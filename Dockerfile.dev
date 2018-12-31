@@ -1,0 +1,13 @@
+# Use an existing docker image as a base
+FROM node:alpine
+
+# Use COPY command to send ALL files to docker container FS
+WORKDIR /usr/app/frontend
+COPY ./package.json ./
+
+# Download and install a dependency
+RUN npm install           
+
+COPY ./ ./
+# Tell the image what to do when it starts as a container
+CMD ["npm","run", "start"]
