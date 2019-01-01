@@ -7,3 +7,17 @@ before_install:
  
 script:
   - docker run mewto/docker-react npm run test -- --coverage 
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DocerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-640555552535"
+  bucket-path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_EBS_ACCESS_KEY_ID
+  secret_access_key:
+    secure: $AWS_EBS_SECRET_KEY
+
